@@ -50665,7 +50665,6 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			swagger: ["7M", "6M", "5M"],
 			tackle: ["8L1", "7L1", "6L1", "5L1"],
 			throatchop: ["8M", "7T"],
-			thunderbolt: ["8L48", "7L49"],
 			toxic: ["7M", "6M", "5M"],
 			weatherball: ["8M"],
 		},
