@@ -1784,6 +1784,20 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2.5,
 		num: 154,
 	},
+	keenedge: {
+		onBasePowerPriority: 23,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['blade']) {
+				this.debug('Keen Edge boost');
+				return this.chainModify([4915, 4096]);
+			}
+		},
+		name: "Keen Edge",
+		rating: 3.5,
+		gen: 8,
+		desc: "This Pokemon's blade-based attacks have their power multiplied by 1.2.",
+		shortDesc: "Blade attacks have 1.2x power.",
+	},
 	keeneye: {
 		onBoost(boost, target, source, effect) {
 			if (source && target === source) return;
