@@ -385,6 +385,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 66,
 	},
+	blitzboxer: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.flags['punch']) return priority + 1;
+		},
+		name: "Blitz Boxer",
+		rating: 4,
+		gen: 8,
+		desc: "This Pokemon's punching moves have their priority increased by 1.",
+		shortDesc: "Punching moves have +1 priority.",
+   },
 	bulletproof: {
 		onTryHit(pokemon, target, move) {
 			if (move.flags['bullet']) {
@@ -1789,14 +1799,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onBasePower(basePower, attacker, defender, move) {
 			if (move.flags['blade']) {
 				this.debug('Keen Edge boost');
-				return this.chainModify([4915, 4096]);
+				return this.chainModify([[5325, 4096]]);
 			}
 		},
 		name: "Keen Edge",
 		rating: 3.5,
 		gen: 8,
-		desc: "This Pokemon's blade-based attacks have their power multiplied by 1.2.",
-		shortDesc: "Blade attacks have 1.2x power.",
+		desc: "This Pokemon's blade-based attacks have their power multiplied by 1.3.",
+		shortDesc: "Blade attacks have 1.3x power.",
 	},
 	keeneye: {
 		onBoost(boost, target, source, effect) {
@@ -3132,6 +3142,19 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 146,
 	},
+	sandsong: {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			if (move.flags['sound'] && !pokemon.volatiles['dynamax']) {
+				move.type = 'Ground';
+			}
+		},
+		name: "Sand Song",
+		rating: 1.5,
+		gen: 8,
+		desc: "This Pokemon's sound-based moves become Ground-Type.",
+		shortDesc: "Sound-based moves become Ground-Type",
+	},
 	sandspit: {
 		onDamagingHit(damage, target, source, move) {
 			if (this.field.getWeather().id !== 'sandstorm') {
@@ -4337,6 +4360,22 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Weak Armor",
 		rating: 1,
 		num: 133,
+	},
+	whiteout: {
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (this.field.isWeather('hail')) {
+				if (move.type === 'Ice') {
+					this.debug('Whiteout boost');
+					return this.chainModify([6144, 4096]);  //I believe this is the correct boost, needs testing.
+				}
+			}
+		},
+		name: "Whiteout",
+		rating: 2.5,
+		gen: 8,
+		desc: "This Pokemon's Ice-type moves deal 50% more damage in Hail",
+		shortDesc: "Ice-type moves do 1.5x damage in Hail."
 	},
 	whitesmoke: {
 		onBoost(boost, target, source, effect) {
