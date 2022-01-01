@@ -436,9 +436,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 34,
 	},
 	chloroplast: {
-		gen: 8,
 		name: "Chloroplast",
 		rating: 4,
+		gen: 8,
 		desc: "NYI. This pokemon's moves act as if it is sunny, regardless of weather",
 		shortDesc: "NYI. This pokemon's moves always act as if it is sunny, regardless of weather",
 	},
@@ -2780,9 +2780,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 211,
 	},
 	powerfists: {
-		gen: 8,
 		name: "Power Fists",
 		rating: 4,
+		gen: 8,
 		desc: "NYI. This pokemon's punching moves hit the foe's SpD and deal 1.2x damage",
 		shortDesc: "NYI. This pokemon's punching moves hit the foe's SpD and deal 1.2x damage",
 	},
@@ -2943,9 +2943,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 74,
 	},
 	pyromancy: {
-		gen: 8,
 		name: "Pyromancy",
 		rating: 4,
+		gen: 8,
 		desc: "NYI. This pokemon has a 5x chance to burn",
 		shortDesc: "NYI. This pokemon has a 5x chance to burn",
 	},
@@ -3003,9 +3003,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 44,
 	},
 	rampage: {
-		gen: 8,
 		name: "Rampage",
 		rating: 4,
+		gen: 8,
 		desc: "NYI. This pokemon doesn't recharge if it gets a KO",
 		shortDesc: "NYI. This pokemon doesn't recharge if it gets a KO",
 	},
