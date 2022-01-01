@@ -1245,7 +1245,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	galewings: {
 		onModifyPriority(priority, pokemon, target, move) {
-			if (move?.type === 'Flying' && pokemon.hp === pokemon.maxhp) return priority + 1;
+			(move && move.type === 'Flying') return priority + 1;
 		},
 		name: "Gale Wings",
 		rating: 3,
@@ -1945,6 +1945,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				move.type = 'Water';
 			}
 		},
+		onBasePowerPriority: 7,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['sound']) {
+				this.debug('Liquid Voice boost');
+				return this.chainModify([4915, 4096]);
+			}
+		},
 		name: "Liquid Voice",
 		rating: 1.5,
 		num: 204,
@@ -2507,6 +2514,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (move.type === 'Grass' && attacker.hp <= attacker.maxhp / 3) {
 				this.debug('Overgrow boost');
 				return this.chainModify(1.5);
+			else if (move.type === 'Grass')
+				this.debug('Small Overgrow boost');
+				return this.chainModify(1.2);
 			}
 		},
 		onModifySpAPriority: 5,
@@ -2514,6 +2524,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (move.type === 'Grass' && attacker.hp <= attacker.maxhp / 3) {
 				this.debug('Overgrow boost');
 				return this.chainModify(1.5);
+			else if (move.type === 'Grass')
+				this.debug('Small Overgrow boost');
+				return this.chainModify(1.2);
 			}
 		},
 		name: "Overgrow",
@@ -2842,6 +2855,19 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Prism Armor",
 		rating: 3,
 		num: 232,
+	},
+	prismscales: {
+		onSourceModifyDamage(damage, source, target, move) {
+			if (move.category === 'Special') {
+				return this.chainModify(0.7);
+			}
+		},
+		isBreakable: true,
+		name: "Prism Scales",
+		rating: 3,
+		gen: 8,
+		desc: "Reduces damage taken from special attacks by 30%.",
+		shortDesc: "Reduces damage taken from special attacks by 30%.",
 	},
 	propellertail: {
 		onModifyMovePriority: 1,
