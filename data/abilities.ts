@@ -435,6 +435,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 34,
 	},
+	chloroplast: {
+		name: "Chloroplast",
+		rating: 4,
+		gen: 8,
+		desc: "NYI. This pokemon's moves act as if it is sunny, regardless of weather",
+		shortDesc: "NYI. This pokemon's moves always act as if it is sunny, regardless of weather",
+	},
 	clearbody: {
 		onBoost(boost, target, source, effect) {
 			if (source && target === source) return;
@@ -1245,7 +1252,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	galewings: {
 		onModifyPriority(priority, pokemon, target, move) {
-			if (move?.type === 'Flying' && pokemon.hp === pokemon.maxhp) return priority + 1;
+			(move && move.type === 'Flying') return priority + 1;
 		},
 		name: "Gale Wings",
 		rating: 3,
@@ -1945,6 +1952,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				move.type = 'Water';
 			}
 		},
+		onBasePowerPriority: 7,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['sound']) {
+				this.debug('Liquid Voice boost');
+				return this.chainModify([4915, 4096]);
+			}
+		},
 		name: "Liquid Voice",
 		rating: 1.5,
 		num: 204,
@@ -2507,6 +2521,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (move.type === 'Grass' && attacker.hp <= attacker.maxhp / 3) {
 				this.debug('Overgrow boost');
 				return this.chainModify(1.5);
+			else if (move.type === 'Grass')
+				this.debug('Small Overgrow boost');
+				return this.chainModify(1.2);
 			}
 		},
 		onModifySpAPriority: 5,
@@ -2514,6 +2531,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (move.type === 'Grass' && attacker.hp <= attacker.maxhp / 3) {
 				this.debug('Overgrow boost');
 				return this.chainModify(1.5);
+			else if (move.type === 'Grass')
+				this.debug('Small Overgrow boost');
+				return this.chainModify(1.2);
 			}
 		},
 		name: "Overgrow",
@@ -2759,6 +2779,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 5,
 		num: 211,
 	},
+	powerfists: {
+		name: "Power Fists",
+		rating: 4,
+		gen: 8,
+		desc: "NYI. This pokemon's punching moves hit the foe's SpD and deal 1.2x damage",
+		shortDesc: "NYI. This pokemon's punching moves hit the foe's SpD and deal 1.2x damage",
+	},
 	powerofalchemy: {
 		onAllyFaint(target) {
 			if (!this.effectState.target.hp) return;
@@ -2843,6 +2870,19 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 232,
 	},
+	prismscales: {
+		onSourceModifyDamage(damage, source, target, move) {
+			if (move.category === 'Special') {
+				return this.chainModify(0.7);
+			}
+		},
+		isBreakable: true,
+		name: "Prism Scales",
+		rating: 3,
+		gen: 8,
+		desc: "Reduces damage taken from special attacks by 30%.",
+		shortDesc: "Reduces damage taken from special attacks by 30%.",
+	},
 	propellertail: {
 		onModifyMovePriority: 1,
 		onModifyMove(move) {
@@ -2902,6 +2942,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 5,
 		num: 74,
 	},
+	pyromancy: {
+		name: "Pyromancy",
+		rating: 4,
+		gen: 8,
+		desc: "NYI. This pokemon has a 5x chance to burn",
+		shortDesc: "NYI. This pokemon has a 5x chance to burn",
+	},
 	queenlymajesty: {
 		onFoeTryMove(target, source, move) {
 			const targetAllExceptions = ['perishsong', 'flowershield', 'rototiller'];
@@ -2919,7 +2966,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		isBreakable: true,
 		name: "Queenly Majesty",
 		rating: 2.5,
-		num: 214,
+		num: 21
+		,
 	},
 	quickdraw: {
 		onFractionalPriorityPriority: -1,
@@ -2953,6 +3001,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Rain Dish",
 		rating: 1.5,
 		num: 44,
+	},
+	rampage: {
+		name: "Rampage",
+		rating: 4,
+		gen: 8,
+		desc: "NYI. This pokemon doesn't recharge if it gets a KO",
+		shortDesc: "NYI. This pokemon doesn't recharge if it gets a KO",
 	},
 	rattled: {
 		onDamagingHit(damage, target, source, move) {
@@ -4198,6 +4253,27 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Unseen Fist",
 		rating: 2,
 		num: 260,
+	},
+	vengeance: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Ghost' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Vengeance boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Ghost' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Vengeance boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Vengeance",
+		rating: 2,
+		gen: 8,
+		desc: "This Pokemon's Ghost type attacks have 1.2x power. 1.5x at 1/3 HP or lower.",
+		shortDesc: "This Pokemon's Ghost type attacks have 1.2x power. 1.5x at 1/3 HP or lower.",
 	},
 	victorystar: {
 		onAnyModifyAccuracyPriority: -1,
