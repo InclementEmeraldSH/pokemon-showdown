@@ -637,7 +637,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: 1001,
+		num: 2001,
 		gen: 8,
 		desc: "If held by a Butterfree, this item allows it to Mega Evolve in battle.",
 	},
@@ -1846,7 +1846,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: 1002,
+		num: 2002,
 		gen: 8,
 		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
 	},
@@ -2760,7 +2760,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: 1003,
+		num: 2003,
 		gen: 8,
 		desc: "If held by a Kingdra, this item allows it to Mega Evolve in battle.",
 	},
@@ -2774,7 +2774,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: 1004,
+		num: 2004,
 		gen: 8,
 		desc: "If held by a Kingler, this item allows it to Mega Evolve in battle.",
 	},
@@ -2828,7 +2828,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: 1005,
+		num: 2005,
 		gen: 8,
 		desc: "If held by a Lapras, this item allows it to Mega Evolve in battle.",
 	},
@@ -3177,7 +3177,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: 1006,
+		num: 2006,
 		gen: 8,
 		desc: "If held by a Machamp, this item allows it to Mega Evolve in battle.",
 	},
@@ -3573,7 +3573,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: 1007,
+		num: 2007,
 		gen: 8,
 		desc: "If held by a Milotic, this item allows it to Mega Evolve in battle.",
 	},
