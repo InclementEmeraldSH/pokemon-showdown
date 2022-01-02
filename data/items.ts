@@ -413,7 +413,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		onTryHeal(damage, target, source, effect) {
 			const heals = ['drain', 'leechseed', 'ingrain', 'aquaring', 'strengthsap'];
 			if (heals.includes(effect.id)) {
-				return this.chainModify([5324, 4096]);
+				return this.chainModify([6144, 4096]);
 			}
 		},
 		num: 296,
@@ -626,6 +626,20 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Genesect-Burn"],
 		num: 118,
 		gen: 5,
+	},
+	butterfrenite: {
+		name: "Butterfrenite",
+		spritenum: 628,
+		megaStone: "Butterfree-Mega",
+		megaEvolves: "Butterfree",
+		itemUser: ["Butterfree"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1001,
+		gen: 8,
+		desc: "If held by a Butterfree, this item allows it to Mega Evolve in battle.",
 	},
 	cameruptite: {
 		name: "Cameruptite",
@@ -1822,6 +1836,20 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 1113,
 		gen: 8,
 	},
+	flygonite: {
+		name: "Flygonite",
+		spritenum: 589,
+		megaStone: "Flygon-Mega",
+		megaEvolves: "Flygon",
+		itemUser: ["Flygon"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1002,
+		gen: 8,
+		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
+	},
 	flyinggem: {
 		name: "Flying Gem",
 		spritenum: 149,
@@ -2722,6 +2750,34 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 221,
 		gen: 2,
 	},
+	kingdranite: {
+		name: "Kingdranite",
+		spritenum: 583,
+		megaStone: "Kingdra-Mega",
+		megaEvolves: "Kingdra",
+		itemUser: ["Kingdra"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1003,
+		gen: 8,
+		desc: "If held by a Kingdra, this item allows it to Mega Evolve in battle.",
+	},
+	kinglerite: {
+		name: "Kinglerite",
+		spritenum: 583,
+		megaStone: "Kingler-Mega",
+		megaEvolves: "Kingler",
+		itemUser: ["Kingler"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1004,
+		gen: 8,
+		desc: "If held by a Kingler, this item allows it to Mega Evolve in battle.",
+	},
 	kommoniumz: {
 		name: "Kommonium Z",
 		spritenum: 690,
@@ -2761,6 +2817,20 @@ export const Items: {[itemid: string]: ItemData} = {
 		},
 		num: 206,
 		gen: 3,
+	},
+	laprasite: {
+		name: "Laprasite",
+		spritenum: 583,
+		megaStone: "Lapras-Mega",
+		megaEvolves: "Lapras",
+		itemUser: ["Lapras"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1005,
+		gen: 8,
+		desc: "If held by a Lapras, this item allows it to Mega Evolve in battle.",
 	},
 	latiasite: {
 		name: "Latiasite",
@@ -3096,6 +3166,20 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 925,
 		gen: 7,
 		isNonstandard: "Past",
+	},
+	machampite: {
+		name: "Machampite",
+		spritenum: 594,
+		megaStone: "Machamp-Mega",
+		megaEvolves: "Machamp",
+		itemUser: ["Machamp"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1006,
+		gen: 8,
+		desc: "If held by a Machamp, this item allows it to Mega Evolve in battle.",
 	},
 	machobrace: {
 		name: "Macho Brace",
@@ -3478,6 +3562,20 @@ export const Items: {[itemid: string]: ItemData} = {
 		},
 		num: 209,
 		gen: 4,
+	},
+	miloticite: {
+		name: "Miloticite",
+		spritenum: 583,
+		megaStone: "Milotic-Mega",
+		megaEvolves: "Milotic",
+		itemUser: ["Milotic"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1007,
+		gen: 8,
+		desc: "If held by a Milotic, this item allows it to Mega Evolve in battle.",
 	},
 	mimikiumz: {
 		name: "Mimikium Z",
