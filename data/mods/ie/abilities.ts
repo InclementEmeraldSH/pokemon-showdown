@@ -385,6 +385,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 66,
 	},
+	blitzboxer: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.flags['punch']) return priority + 1;
+		},
+		name: "Blitz Boxer",
+		rating: 4,
+		gen: 8,
+		desc: "This Pokemon's punching moves have their priority increased by 1.",
+		shortDesc: "Punching moves have +1 priority.",
+   },
 	bulletproof: {
 		onTryHit(pokemon, target, move) {
 			if (move.flags['bullet']) {
@@ -424,6 +434,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Chlorophyll",
 		rating: 3,
 		num: 34,
+	},
+	chloroplast: {
+		name: "Chloroplast",
+		rating: 4,
+		gen: 8,
+		desc: "NYI. This pokemon's moves act as if it is sunny, regardless of weather",
+		shortDesc: "NYI. This pokemon's moves always act as if it is sunny, regardless of weather",
 	},
 	clearbody: {
 		onBoost(boost, target, source, effect) {
@@ -1235,7 +1252,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	galewings: {
 		onModifyPriority(priority, pokemon, target, move) {
-			if (move?.type === 'Flying' && pokemon.hp === pokemon.maxhp) return priority + 1;
+			(move && move.type === 'Flying') return priority + 1;
 		},
 		name: "Gale Wings",
 		rating: 3,
@@ -1789,14 +1806,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onBasePower(basePower, attacker, defender, move) {
 			if (move.flags['blade']) {
 				this.debug('Keen Edge boost');
-				return this.chainModify([4915, 4096]);
+				return this.chainModify([[5325, 4096]]);
 			}
 		},
 		name: "Keen Edge",
 		rating: 3.5,
 		gen: 8,
-		desc: "This Pokemon's blade-based attacks have their power multiplied by 1.2.",
-		shortDesc: "Blade attacks have 1.2x power.",
+		desc: "This Pokemon's blade-based attacks have their power multiplied by 1.3.",
+		shortDesc: "Blade attacks have 1.3x power.",
 	},
 	keeneye: {
 		onBoost(boost, target, source, effect) {
@@ -1933,6 +1950,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyType(move, pokemon) {
 			if (move.flags['sound'] && !pokemon.volatiles['dynamax']) { // hardcode
 				move.type = 'Water';
+			}
+		},
+		onBasePowerPriority: 7,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['sound']) {
+				this.debug('Liquid Voice boost');
+				return this.chainModify([4915, 4096]);
 			}
 		},
 		name: "Liquid Voice",
@@ -2497,6 +2521,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (move.type === 'Grass' && attacker.hp <= attacker.maxhp / 3) {
 				this.debug('Overgrow boost');
 				return this.chainModify(1.5);
+			else if (move.type === 'Grass')
+				this.debug('Small Overgrow boost');
+				return this.chainModify(1.2);
 			}
 		},
 		onModifySpAPriority: 5,
@@ -2504,6 +2531,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (move.type === 'Grass' && attacker.hp <= attacker.maxhp / 3) {
 				this.debug('Overgrow boost');
 				return this.chainModify(1.5);
+			else if (move.type === 'Grass')
+				this.debug('Small Overgrow boost');
+				return this.chainModify(1.2);
 			}
 		},
 		name: "Overgrow",
@@ -2749,6 +2779,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 5,
 		num: 211,
 	},
+	powerfists: {
+		name: "Power Fists",
+		rating: 4,
+		gen: 8,
+		desc: "NYI. This pokemon's punching moves hit the foe's SpD and deal 1.2x damage",
+		shortDesc: "NYI. This pokemon's punching moves hit the foe's SpD and deal 1.2x damage",
+	},
 	powerofalchemy: {
 		onAllyFaint(target) {
 			if (!this.effectState.target.hp) return;
@@ -2833,6 +2870,19 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 232,
 	},
+	prismscales: {
+		onSourceModifyDamage(damage, source, target, move) {
+			if (move.category === 'Special') {
+				return this.chainModify(0.7);
+			}
+		},
+		isBreakable: true,
+		name: "Prism Scales",
+		rating: 3,
+		gen: 8,
+		desc: "Reduces damage taken from special attacks by 30%.",
+		shortDesc: "Reduces damage taken from special attacks by 30%.",
+	},
 	propellertail: {
 		onModifyMovePriority: 1,
 		onModifyMove(move) {
@@ -2892,6 +2942,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 5,
 		num: 74,
 	},
+	pyromancy: {
+		name: "Pyromancy",
+		rating: 4,
+		gen: 8,
+		desc: "NYI. This pokemon has a 5x chance to burn",
+		shortDesc: "NYI. This pokemon has a 5x chance to burn",
+	},
 	queenlymajesty: {
 		onFoeTryMove(target, source, move) {
 			const targetAllExceptions = ['perishsong', 'flowershield', 'rototiller'];
@@ -2909,7 +2966,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		isBreakable: true,
 		name: "Queenly Majesty",
 		rating: 2.5,
-		num: 214,
+		num: 21
+		,
 	},
 	quickdraw: {
 		onFractionalPriorityPriority: -1,
@@ -2943,6 +3001,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Rain Dish",
 		rating: 1.5,
 		num: 44,
+	},
+	rampage: {
+		name: "Rampage",
+		rating: 4,
+		gen: 8,
+		desc: "NYI. This pokemon doesn't recharge if it gets a KO",
+		shortDesc: "NYI. This pokemon doesn't recharge if it gets a KO",
 	},
 	rattled: {
 		onDamagingHit(damage, target, source, move) {
@@ -3131,6 +3196,19 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Sand Rush",
 		rating: 3,
 		num: 146,
+	},
+	sandsong: {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			if (move.flags['sound'] && !pokemon.volatiles['dynamax']) {
+				move.type = 'Ground';
+			}
+		},
+		name: "Sand Song",
+		rating: 1.5,
+		gen: 8,
+		desc: "This Pokemon's sound-based moves become Ground-Type.",
+		shortDesc: "Sound-based moves become Ground-Type",
 	},
 	sandspit: {
 		onDamagingHit(damage, target, source, move) {
@@ -4176,6 +4254,27 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 260,
 	},
+	vengeance: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Ghost' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Vengeance boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Ghost' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Vengeance boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Vengeance",
+		rating: 2,
+		gen: 8,
+		desc: "This Pokemon's Ghost type attacks have 1.2x power. 1.5x at 1/3 HP or lower.",
+		shortDesc: "This Pokemon's Ghost type attacks have 1.2x power. 1.5x at 1/3 HP or lower.",
+	},
 	victorystar: {
 		onAnyModifyAccuracyPriority: -1,
 		onAnyModifyAccuracy(accuracy, target, source) {
@@ -4337,6 +4436,22 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Weak Armor",
 		rating: 1,
 		num: 133,
+	},
+	whiteout: {
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (this.field.isWeather('hail')) {
+				if (move.type === 'Ice') {
+					this.debug('Whiteout boost');
+					return this.chainModify([6144, 4096]);  //I believe this is the correct boost, needs testing.
+				}
+			}
+		},
+		name: "Whiteout",
+		rating: 2.5,
+		gen: 8,
+		desc: "This Pokemon's Ice-type moves deal 50% more damage in Hail",
+		shortDesc: "Ice-type moves do 1.5x damage in Hail."
 	},
 	whitesmoke: {
 		onBoost(boost, target, source, effect) {
