@@ -1252,7 +1252,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	galewings: {
 		onModifyPriority(priority, pokemon, target, move) {
-			(move && move.type === 'Flying') return priority + 1;
+			if (move && move.type === 'Flying') return priority + 1;
 		},
 		name: "Gale Wings",
 		rating: 3,
