@@ -2521,9 +2521,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (move.type === 'Grass' && attacker.hp <= attacker.maxhp / 3) {
 				this.debug('Overgrow boost');
 				return this.chainModify(1.5);
-			else if (move.type === 'Grass')
-				this.debug('Small Overgrow boost');
-				return this.chainModify(1.2);
 			}
 		},
 		onModifySpAPriority: 5,
@@ -2531,9 +2528,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (move.type === 'Grass' && attacker.hp <= attacker.maxhp / 3) {
 				this.debug('Overgrow boost');
 				return this.chainModify(1.5);
-			else if (move.type === 'Grass')
-				this.debug('Small Overgrow boost');
-				return this.chainModify(1.2);
 			}
 		},
 		name: "Overgrow",
